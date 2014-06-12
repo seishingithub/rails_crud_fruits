@@ -24,8 +24,24 @@ feature 'Manage Fruits' do
     expect(page).to have_content 'banana'
     expect(page).to have_content 'yellow'
     click_on 'Edit fruit'
+    fill_in 'Name', with: 'strawberry'
+    fill_in 'Color', with: 'red'
+    click_on 'Update fruit'
+  end
+
+  scenario 'User can delete list of fruits' do
+    visit '/'
+    click_on 'Add fruit'
     fill_in 'Name', with: 'banana'
     fill_in 'Color', with: 'yellow'
-    click_on 'Update fruit'
+    click_on 'Create fruit'
+    expect(page).to have_content 'banana'
+    expect(page).to have_content 'yellow'
+    click_on 'banana'
+    expect(page).to have_content 'banana'
+    expect(page).to have_content 'yellow'
+    click_on 'Delete fruit'
+    expect(page).to have_no_content 'banana'
+    expect(page).to have_no_content 'yellow'
   end
 end

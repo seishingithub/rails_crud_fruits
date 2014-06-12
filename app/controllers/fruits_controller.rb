@@ -29,6 +29,12 @@ class FruitsController < ApplicationController
     redirect_to fruits_path
   end
 
+  def destroy
+    @fruit = Fruit.find(params[:id]).delete
+
+    redirect_to fruits_path
+  end
+
   private
 
   def fruit_params
